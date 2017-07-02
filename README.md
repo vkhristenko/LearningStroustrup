@@ -1,6 +1,13 @@
 # LearningStroustrup
 Learning materials for the Stroustrup book on c++
 
+## Setup:
+```
+git clone https://github.com/vkhristenko/LearningStroustrup
+cd LearningStroustrup
+g++ -o prog1 prog1.cc`
+```
+
 ## HowTo
 - Use CLI - Command Line Interface
 - To compile: ```g++ -o prog1 prog1.cc``` or replace the prog1 to compile something else.
