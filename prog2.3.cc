@@ -3,6 +3,11 @@
 //
 #include <iostream>
 
+//
+// you need this - namespaces will come later.
+//
+using namespace std;
+
 // sizes of different data types(2.3.1) 
 
 void sizesTable ()
@@ -113,11 +118,22 @@ void f6()
 
 struct address //определение структуры "адрес"
 {
-	char* name;
+    // the need for the const is because otherwise you will be getting:
+    //
+    // prog2.3.cc:130:21: warning: conversion from string literal to 'char *' is deprecated
+    //       [-Wc++11-compat-deprecated-writable-strings]
+    //               "New Providence", {"N", "J"}, 
+    //                         
+    // the idea here is that "something" is of type char const * and you can not assign
+    // that to something of type char*
+    // In other words, given something that is a const, you can not assign it to be a 
+    // non-const - varying basically...
+    //
+	char const * name;
 	long number;
-	char* street;
-	char* town;
-	char* state[2];
+	char const * street;
+	char const * town;
+	char const * state[2];
 	int zip;
 };
 
@@ -125,8 +141,9 @@ struct address //определение структуры "адрес"
 
 address jd = {
 	"Jim Dandy",
-	61, "South Street"
-	"New Providence", {'N', 'J'}, 7974
+	61, "South Street", // you forgot a comma in here!
+	"New Providence", {"N", "J"}, 
+    7974
 };
 
 
