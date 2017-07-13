@@ -2,6 +2,7 @@
 // Learning Stroustrup part 2.3
 //
 #include <iostream>
+using namespace std;
 
 //
 // you need this - namespaces will come later.
@@ -146,9 +147,87 @@ address jd = {
     7974
 };
 
+address vk = {
+	"Victor Khristenko",
+	1220, "1st Ave NE", // you forgot a comma in here!
+	"Cedar Rapids", {"I", "A"}, 
+    52402
+};
+
+address* pointerAddress = &jd;
+
+//вывод данных на экран
+
+void print_address(address* p)
+{
+	cout << "Name: " << p -> name << '\n'
+	<< "Number: " << p -> number << '\n'
+	<< "Street: " << p -> street << '\n'
+	<< "Town: " << p -> town << '\n'
+	<< "State: " << p -> state[0] << p -> state[1] << '\n'
+	<< "ZIP Code: " << p -> zip << endl;
+} 
+
+//присваивание адресу нового значения
+
+address current;
+address set_current(address next)
+{
+	address prev = current;
+	current = next;
+	return prev;
+}
+
+struct link{
+	link* previous;
+	link* successor;
+};
+
+//два структурных типа с одними и теми же
+//членами - различны (2.3.9)
+
+struct s1 { int a; };
+struct s2 { int a; };
+
+//использование typedef
+
+typedef char* Pchar;
+Pchar p1, p2;
+char* p3 = p1;	
+
+//ссылка как параметр функции(2.3.10)
+
+void incr(int& aa) { aa++; }
+void f7(){
+	int x = 1;
+	incr(x);
+	cout << x << endl;
+}
+
+//указатель и переменная как параметры функции(2.3.10)
+
+int next(int p) { return p+1; }
+void inc(int* p) { (*p)++; }
+void g()
+{
+	int x = 1;
+	x = next(x);
+	cout << x << endl;
+	inc(&x);
+	cout << x << endl;
+}
+//ссылка, представленная как указатель(2.3.10)
+
+void f8()
+{
+	double* cdrp;
+	double temp;
+	temp = double(1);
+	cdrp = &temp;
+	cout << cdrp << endl;
+}
 
 int main()
 {
-	printf("Hello World");
+	f8();
 }
-
